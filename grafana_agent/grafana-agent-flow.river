@@ -1,0 +1,42 @@
+// Sample config for the Grafana Agent.
+//
+// For a full configuration reference, see https://grafana.com/docs/agent/latest/flow/
+
+logging {
+	level = "debug"
+}
+
+loki.source.file "log4j2_json_example" {
+  targets    = [
+    // __path__ is a special field that tells the agent where to find the log file
+    // "exporter" = "log4j2" will be the Loki stream label name and label
+    {__path__ = "/tmp/log4j2_json_example.log", "exporter" = "log4j2json"},
+  ]
+  forward_to = [loki.write.grafanacloud.receiver]
+}
+
+// The OTLP receiver is used to receive spans, metrics and logs
+otelcol.receiver.otlp "default" {
+  grpc {
+    endpoint = "127.0.0.1:4317"
+  }
+
+  http {
+    endpoint = "127.0.0.1:4318"
+  }
+  output {
+    logs = [otelcol.exporter.loki.default.input]
+  }
+}
+
+otelcol.exporter.loki "default" {
+  forward_to = [loki.write.grafanacloud.receiver]
+}
+
+// The Loki url endpoint with credentials
+loki.write "grafanacloud" {
+  endpoint {
+    url = "https://122845:glc_eyJvIjoiNDE5Mzg2IiwibiI6InN0YWNrLTI3NDAxNS1obC13cml0ZS1sb2dkZW1vIiwiayI6IjF6b1NHMkZobTB4NVRyMTJMMmYzdTk4ayIsIm0iOnsiciI6ImV1In19@logs-prod-eu-west-0.grafana.net/loki/api/v1/push"
+  }
+}
+
