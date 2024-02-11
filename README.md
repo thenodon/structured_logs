@@ -13,13 +13,13 @@ The examples are:
 - log4j2_json_example - using Java with log4j2 and the output is in JSON format to stdout
 - log4j2_object_example - using Java with log4j2 and the output is OTLP protocol for logs directly to a OTLP receiver
 
-# Examples
+> All examples have been tested with Openjdk 19 but should work with any version of Java 11 or later.
 
 The log records for all examples are ingest into Grafana Loki using the Grafana Agent.
 For simplicity, sign up for a free account at [Grafana Cloud](https://grafana.com/products/cloud/). 
 Create an API key and use the key to configure the Grafana Agent with your api key.
 
-## Setup and run Grafana Agent
+# Setup and run Grafana Agent
 
 Update the file `grafana-agent-flow.river` file with your url and API key that you can find in your free Grafana Cloud 
 account. 
@@ -35,6 +35,8 @@ export AGENT_MODE=flow
 ./grafana-agent-linux-amd64 run ./grafana-agent-flow.river
 ```
 Connect to the agent in a browser at `http://localhost:12345`
+
+# Examples
 
 ## log4j2_json_example
 To run the example, use the following command:
