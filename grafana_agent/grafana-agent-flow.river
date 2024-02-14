@@ -33,10 +33,10 @@ otelcol.exporter.loki "default" {
   forward_to = [loki.write.grafanacloud.receiver]
 }
 
-// The Loki url endpoint with credentials
+// The Loki url endpoint with credentials - below is an example of Grafana Cloud Loki url
 loki.write "grafanacloud" {
   endpoint {
-    url = "https://122845:glc_eyJvIjoiNDE5Mzg2IiwibiI6InN0YWNrLTI3NDAxNS1obC13cml0ZS1sb2dkZW1vIiwiayI6IjF6b1NHMkZobTB4NVRyMTJMMmYzdTk4ayIsIm0iOnsiciI6ImV1In19@logs-prod-eu-west-0.grafana.net/loki/api/v1/push"
+    url = "https://123845:glc_eyJvIjoiNDE5Mzg2IiwibiI6InN0YXNrLTI3NDAxNS1obC13cml0ZS1sb2dkZW1vIiwiayI6IjF6b1NHMkZobTB4NVRyMTJMMmYzdTk4ayIsIm0iOnsiciI6ImV1In19@logs-prod-eu-west-0.grafana.net/loki/api/v1/push"
   }
 }
 
